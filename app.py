@@ -6,13 +6,17 @@ import joblib
 # Page Configuration
 # -------------------------------
 st.set_page_config(
-    page_title="Logistic Regression Prediction",
-    page_icon="📊",
+    page_title="Social Network Ads Purchase Prediction",
+    page_icon="🛒",
     layout="centered"
 )
 
-st.title("📊 Logistic Regression Prediction App")
-st.write("This app uses a trained Logistic Regression model to make predictions.")
+st.title("🛒 Social Network Ads Purchase Prediction App")
+st.write(
+    "This application predicts whether a user will **purchase a product** "
+    "based on **Gender, Age, and Estimated Salary**, using a trained "
+    "**Logistic Regression model**."
+)
 
 # -------------------------------
 # Load PKL File (SAFE LOADING)
@@ -28,11 +32,11 @@ else:
 # -------------------------------
 # User Inputs
 # -------------------------------
-st.subheader("Enter Input Values")
+st.subheader("Enter User Details")
 
 gender = st.selectbox("Gender", ["Male", "Female"])
 age = st.number_input("Age", min_value=1, max_value=100, value=25)
-salary = st.number_input("Salary", min_value=1000, max_value=1000000, value=30000)
+salary = st.number_input("Estimated Salary", min_value=1000, max_value=1000000, value=30000)
 
 # -------------------------------
 # Encode Input (same as training)
@@ -49,6 +53,6 @@ if st.button("Predict"):
     prediction = model.predict(input_data)
 
     if prediction[0] == 1:
-        st.success("✅ Prediction: YES")
+        st.success("✅ Prediction: User WILL Purchase the Product")
     else:
-        st.error("❌ Prediction: NO")
+        st.error("❌ Prediction: User will NOT Purchase the Product")
